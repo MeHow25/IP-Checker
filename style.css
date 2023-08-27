@@ -1,0 +1,47 @@
+body {
+  height: 100%;
+  background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  font-family: "Varela Round", Arial, "Helvetica Neue", Helvetica, serif;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  background-color: white;
+  width: 90vw;
+  margin: auto;
+}
+
+.grid-item {
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 16px;
+  text-align: left;
+}
+
+tr {
+  border-top: solid;
+  border-width: 1px 0;
+}
+
+tr:last-child {
+  border-bottom: solid;
+  border-width: 1px 0;
+}
+
+td {
+  padding: 8px;
+}
