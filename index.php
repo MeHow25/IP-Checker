@@ -23,6 +23,12 @@ curl_close($curl);
 $parsedResponse = json_decode($response);
 $latitude = $parsedResponse->latitude;
 $longitude = $parsedResponse->longitude;
+$ipAddress = $parsedResponse->ipAddress;
+$countryName = $parsedResponse->countryName;
+$timeZone = $parsedResponse->timeZone;
+$zipCode = $parsedResponse->zipCode;
+$regionName = $parsedResponse->regionName;
+$cityName = $parsedResponse->cityName;
 
 echo <<<EOT
 <!DOCTYPE html>
@@ -42,35 +48,35 @@ echo <<<EOT
         <table>          
             <tr>
               <td><b>Your IP address</b></td>
-              <td><b>213.134.185.183</b></td>
+              <td><b>$ipAddress</b></td>
             </tr>
             <tr>
               <td>Latitude</td>
-              <td>52.2296</td>
+              <td>$latitude</td>
             </tr>
             <tr>
-              <td>Longtitude</td>
-              <td>21.0067</td>
+              <td>Longitude</td>
+              <td>$longitude</td>
             </tr>
             <tr>
               <td>Country</td>
-              <td>Poland</td>
+              <td>$countryName</td>
             </tr>
             <tr>
               <td>Region</td>
-              <td>Mazovia</td>
+              <td>$regionName</td>
             </tr>
             <tr>
               <td>City</td>
-              <td>Warsaw</td>
+              <td>$cityName</td>
             </tr>
             <tr>
               <td>Zip Code</td>
-              <td>05-077</td>
+              <td>$zipCode</td>
             </tr>                        
             <tr>
               <td>Timezone</td>
-              <td>+02:00</td>
+              <td>$timeZone</td>
             </tr>
         </table>
       </div>
@@ -81,13 +87,13 @@ echo <<<EOT
 </div>
     
     <script>
-      var map = L.map('map').setView([{ $latitude }, { $longitude }], 12);
+      var map = L.map('map').setView([$latitude, $longitude], 12);
 
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      L.marker([{ $latitude }, { $longitude }]).addTo(map)
+      L.marker([$latitude, $longitude]).addTo(map)
         .bindPopup('Your location')
         .openPopup();
     </script>
