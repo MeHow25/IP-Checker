@@ -2,13 +2,7 @@
 
 $curl = curl_init();
 
-if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-  $userIp = $_SERVER['HTTP_CLIENT_IP'];
-} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-  $userIp = $_SERVER['HTTP_X_FORWARDED_FOR'];
-} else {
-  $userIp = $_SERVER['REMOTE_ADDR'];
-}
+$userIp = file_get_contents("http://ipecho.net/plain");
 
 curl_setopt_array($curl, [
   CURLOPT_URL => "https://freeipapi.com/api/json/".$userIp,
